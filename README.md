@@ -3,21 +3,22 @@
 
 ## Getting started
 
-`$ npm install react-native-appstore-version-checker --save`
+`npm install react-native-appstore-version-checker --save`
 
-### Mostly automatic installation
+or
 
-`$ react-native link react-native-appstore-version-checker`
+`yarn add react-native-appstore-version-checker`
+
+### Automatic installation
+
+`react-native link react-native-appstore-version-checker`
 
 ### Manual installation
 
 
 #### iOS
 
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-appstore-version-checker` and add `RNAppstoreVersionChecker.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNAppstoreVersionChecker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
+Nothing to be done here ( its pure JS for IOS ;) )
 
 #### Android
 
@@ -34,20 +35,20 @@
       compile project(':react-native-appstore-version-checker')
   	```
 
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNAppstoreVersionChecker.sln` in `node_modules/react-native-appstore-version-checker/windows/RNAppstoreVersionChecker.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Com.Reactlibrary.RNAppstoreVersionChecker;` to the usings at the top of the file
-  - Add `new RNAppstoreVersionCheckerPackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
 
 ## Usage
 ```javascript
-import RNAppstoreVersionChecker from 'react-native-appstore-version-checker';
+import {getAppstoreAppVersion} from 'react-native-appstore-version-checker';
 
-// TODO: What to do with the module?
-RNAppstoreVersionChecker;
+or
+
+var getAppstoreAppVersion = require('react-native-appstore-version-checker').getAppstoreAppVersion;
+
+getAppstoreAppVersion('com.whatsapp') //put any apps identifier here
+.then((appVersion) => {
+  console.log('Whatsapp version on store', appVersion);
+})
+.catch((err) => {
+  console.log('error occurred', err);
+});
 ```
-  
