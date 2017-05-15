@@ -8,19 +8,6 @@ export const parseJson = (r) => new Promise((resolve, reject) => {
   });
 });
 
-export const parseHTML = (r) => new Promise((resolve, reject) => {
-  r.blob().then((d) => {
-    const reader = new FileReader();
-    reader.onload = function () {
-      resolve(reader.result);
-    };
-    reader.onerror = (error) => {
-      reject(error);
-    };
-    reader.readAsText(d);
-  }).catch((err) => reject(err));
-});
-
 export const get = (url) => {
   const config = {
     method: 'GET',

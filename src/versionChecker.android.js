@@ -1,21 +1,13 @@
-//
 import {NativeModules} from 'react-native';
-import {get, parseHTML} from './fetcher';
+import {get} from './fetcher';
 
-// $('[itemprop=\'softwareVersion\']').text().trim();
-
-const getAppVersion = (id) => {
-  const url = `https://play.google.com/store/apps/details?id=${id}&hl=in`;
-  console.log('calling');
+const getAppstoreAppVersion = (id, extractorString = '[itemprop=\'softwareVersion\']') => {
+  const url = `https://play.google.com/store/apps/details?id=${id}`;
   return new Promise((resolve, reject) => {
-    NativeModules.RNAppstoreVersionChecker.appVersionExtractor(url, resolve, reject);
+    NativeModules.RNAppstoreVersionChecker.appVersionExtractor(url,extractorString,resolve, reject);
   });
-  // return get(url).then(parseHTML).then((d) => {
-  //   console.log(d);
-  //   return  $('[itemprop=\'softwareVersion\']').text().trim();
-  // });
 };
 
 module.exports = {
-  getAppVersion
+  getAppstoreAppVersion
 };
