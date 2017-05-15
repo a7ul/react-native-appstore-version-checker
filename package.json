@@ -1,19 +1,27 @@
 {
   "name": "react-native-appstore-version-checker",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "A react native module to find the app version on play store and ios app store",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "ios",
+    "version",
+    "check",
+    "android",
+    "play store",
+    "app store",
+    "checker",
+    "fetch",
+    "parse"
   ],
-  "author": "",
-  "license": "",
+  "author": "atulanand94@gmail.com",
+  "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2",
-    "react-native-windows": "0.41.0-rc.1"
+    "react-native": "*"
   },
   "dependencies": {
     "lodash": "^4.17.4"

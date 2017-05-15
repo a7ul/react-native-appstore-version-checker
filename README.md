@@ -1,5 +1,9 @@
 # react-native-appstore-version-checker
 
+A react native module to check an app's version on playstore or ios app store.
+This module can be used to check if your app has a new version on playstore or apple app store.
+or you can even check what is the latest version of another app on playstore.
+
 ## Getting started
 
 `npm install react-native-appstore-version-checker --save`
@@ -141,3 +145,8 @@ getAppstoreAppVersion('529479190','id')
 or
 getAppstoreAppVersion('com.example.app','bundleId')
 ```
+
+### License
+MIT
+
+© Atul R
