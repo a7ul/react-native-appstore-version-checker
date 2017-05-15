@@ -114,7 +114,9 @@ getAppstoreAppVersion('com.example.app','bundleId')
 ### How To find an appid in IOS or packageId in Android
 
 #### IOS
-**finding appid for an ios app**
+
+**Finding appid for an ios app**
+
 Search for an app on itunes store. Lets take the example of `clash of clans`.
 
 <br>
@@ -127,7 +129,9 @@ Search for an app on itunes store. Lets take the example of `clash of clans`.
 The area marked on red is the apps appid
 
 #### ANDROID
-**finding packageId for an android app**
+
+**Finding packageId for an android app**
+
 Search for an app on playstore. Lets take the example of `clash of clans`.
 
 <br>
