@@ -1,11 +1,4 @@
-//
-// import { NativeModules } from 'react-native';
-//
-// const { RNAppstoreVersionChecker } = NativeModules;
-//
-// export default RNAppstoreVersionChecker;
-
-import versionChecker from './src/versionChecker.android';
+import versionChecker from './src/versionChecker';
 
 
 module.exports = versionChecker;

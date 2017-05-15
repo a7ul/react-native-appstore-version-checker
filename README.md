@@ -1,4 +1,3 @@
-
 # react-native-appstore-version-checker
 
 ## Getting started
@@ -15,7 +14,6 @@ or
 
 ### Manual installation
 
-
 #### iOS
 
 Nothing to be done here ( its pure JS for IOS ;) )
@@ -23,20 +21,25 @@ Nothing to be done here ( its pure JS for IOS ;) )
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
+
   - Add `import com.reactlibrary.RNAppstoreVersionCheckerPackage;` to the imports at the top of the file
   - Add `new RNAppstoreVersionCheckerPackage()` to the list returned by the `getPackages()` method
-2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-appstore-version-checker'
-  	project(':react-native-appstore-version-checker').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-appstore-version-checker/android')
-  	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-appstore-version-checker')
-  	```
 
+2. Append the following lines to `android/settings.gradle`:
+
+  ```
+     include ':react-native-appstore-version-checker'
+     project(':react-native-appstore-version-checker').projectDir = new File(rootProject.projectDir,     '../node_modules/react-native-appstore-version-checker/android')
+  ```
+
+3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
+
+  ```
+     compile project(':react-native-appstore-version-checker')
+  ```
 
 ## Usage
+
 ```javascript
 import {getAppstoreAppVersion} from 'react-native-appstore-version-checker';
 
@@ -44,11 +47,94 @@ or
 
 var getAppstoreAppVersion = require('react-native-appstore-version-checker').getAppstoreAppVersion;
 
-getAppstoreAppVersion('com.whatsapp') //put any apps identifier here
+//On Android u can do
+getAppstoreAppVersion('com.supercell.clashofclans') //put any apps packageId here
 .then((appVersion) => {
-  console.log('Whatsapp version on store', appVersion);
+  console.log('clashofclans android app version on playstore', appVersion);
+})
+.catch((err) => {
+  console.log('error occurred', err);
+});
+
+//On IOS u can do
+getAppstoreAppVersion('529479190') //put any apps id here
+.then((appVersion) => {
+  console.log('clash of clans ios app version on appstore', appVersion);
 })
 .catch((err) => {
   console.log('error occurred', err);
 });
 ```
+
+### Advanced Options
+
+#### For Android
+
+```javascript
+getAppstoreAppVersion(identifier, jquerySelector);
+```
+
+**params:**
+
+- `identifier` is the app package id like `com.example.app`
+
+- `jquerySelector` is the dom element identifier (much like jquery selector) for playstore app page . Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
+
+**Example**
+
+```javascript
+getAppstoreAppVersion('com.supercell.clashofclans', '[itemprop="softwareVersion"]')
+```
+
+#### For IOS
+
+```javascript
+getAppstoreAppVersion(identifier, typeOfId);
+```
+
+**params:**
+
+- `identifier` is the app package id like `com.example.app`
+
+- `typeOfId` (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
+Currently to get the ios version number from app store we hit the url `https://itunes.apple.com/lookup?id=<app id> ` by default.
+or we can also hit
+`https://itunes.apple.com/lookup?bundleId=<app bundle id>` if we pass typeOfId as `bundleId`.
+When we hit the above said urls we get json with all the info of the app.
+
+**Example**
+
+```javascript
+getAppstoreAppVersion('529479190','id')
+or
+getAppstoreAppVersion('com.example.app','bundleId')
+```
+
+
+### How To find an appid in IOS or packageId in Android
+
+#### IOS
+**finding appid for an ios app**
+Search for an app on itunes store. Lets take the example of `clash of clans`.
+
+<br>
+
+<div style="text-align:center">
+  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/ios-example-screenshot.jpg" style="width: 50%;display: inline;">
+</div>
+<br>
+
+The area marked on red is the apps appid
+
+#### ANDROID
+**finding packageId for an android app**
+Search for an app on playstore. Lets take the example of `clash of clans`.
+
+<br>
+
+<div style="text-align:center">
+  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/android-example-screenshot.jpg" style="width: 50%;display: inline;">
+</div>
+<br>
+
+The area marked on red is the apps packageId
