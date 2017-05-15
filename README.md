@@ -66,6 +66,38 @@ getAppstoreAppVersion('529479190') //put any apps id here
 });
 ```
 
+### How To find an appid in IOS or packageId in Android
+
+#### IOS
+
+**Finding appid for an ios app**
+
+Search for an app on itunes store. Lets take the example of `clash of clans`.
+
+<br>
+
+<div style="text-align:center">
+  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/ios-example-screenshot.jpg" style="width: 50%;display: inline;">
+</div>
+<br>
+
+The area marked on red is the app's `appid`
+
+#### ANDROID
+
+**Finding packageId for an android app**
+
+Search for an app on playstore. Lets take the example of `clash of clans`.
+
+<br>
+
+<div style="text-align:center">
+  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/android-example-screenshot.jpg" style="width: 50%;display: inline;">
+</div>
+<br>
+
+The area marked on red is the app's `packageId`
+
 ### Advanced Options
 
 #### For Android
@@ -109,36 +141,3 @@ getAppstoreAppVersion('529479190','id')
 or
 getAppstoreAppVersion('com.example.app','bundleId')
 ```
-
-
-### How To find an appid in IOS or packageId in Android
-
-#### IOS
-
-**Finding appid for an ios app**
-
-Search for an app on itunes store. Lets take the example of `clash of clans`.
-
-<br>
-
-<div style="text-align:center">
-  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/ios-example-screenshot.jpg" style="width: 50%;display: inline;">
-</div>
-<br>
-
-The area marked on red is the apps appid
-
-#### ANDROID
-
-**Finding packageId for an android app**
-
-Search for an app on playstore. Lets take the example of `clash of clans`.
-
-<br>
-
-<div style="text-align:center">
-  <img src="https://github.com/master-atul/react-native-appstore-version-checker/raw/master/screenshots/android-example-screenshot.jpg" style="width: 50%;display: inline;">
-</div>
-<br>
-
-The area marked on red is the apps packageId
