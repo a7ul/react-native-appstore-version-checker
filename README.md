@@ -131,13 +131,19 @@ When we hit the above said urls we get json with all the info of the app.
 const storeSpecificId = Platform.OS === 'ios'
     ? '529479190'
     : 'com.supercell.clashofclans'
-    
+
 getAppstoreAppVersion(storeSpecificId, {
     jquerySelector: '[itemprop=\'softwareVersion\']',
     typeOfId: 'id',
     country: 'de'
 })
 ```
+
+### Contributors
+
+Atul R : https://github.com/master-atul
+
+Dmytro Gorelik : https://github.com/dhorelik
 
 
 ### License
