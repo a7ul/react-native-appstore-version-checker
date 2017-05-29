@@ -104,47 +104,41 @@ The area marked on red is the app's `packageId`
 
 ### Advanced Options
 
-#### For Android
 
 ```javascript
-getAppstoreAppVersion(identifier, jquerySelector);
+getAppstoreAppVersion(identifier, options);
 ```
 
 **params:**
 
 - `identifier` is the app package id like `com.example.app`
 
-- `jquerySelector` is the dom element identifier (much like jquery selector) for playstore app page . Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
+- `options` contains values which can affect the result obtained from the store
 
-**Example**
+    - `jquerySelector` [Android] is the dom element identifier (much like jquery selector) for playstore app page. Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
 
-```javascript
-getAppstoreAppVersion('com.supercell.clashofclans', '[itemprop="softwareVersion"]')
-```
-
-#### For IOS
-
-```javascript
-getAppstoreAppVersion(identifier, typeOfId);
-```
-
-**params:**
-
-- `identifier` is the app package id like `com.example.app`
-
-- `typeOfId` (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
+    - `typeOfId` [iOS] (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
 Currently to get the ios version number from app store we hit the url `https://itunes.apple.com/lookup?id=<app id> ` by default.
 or we can also hit
 `https://itunes.apple.com/lookup?bundleId=<app bundle id>` if we pass typeOfId as `bundleId`.
 When we hit the above said urls we get json with all the info of the app.
 
+    - `country` [iOS] (default is `us`) The two-letter country code for the store you want to search. The search uses the default store front for the specified country.
+
 **Example**
 
 ```javascript
-getAppstoreAppVersion('529479190','id')
-or
-getAppstoreAppVersion('com.example.app','bundleId')
+const storeSpecificId = Platform.OS === 'ios'
+    ? '529479190'
+    : 'com.supercell.clashofclans'
+    
+getAppstoreAppVersion(storeSpecificId, {
+    jquerySelector: '[itemprop=\'softwareVersion\']',
+    typeOfId: 'id',
+    country: 'de'
+})
 ```
+
 
 ### License
 MIT
