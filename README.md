@@ -141,10 +141,9 @@ getAppstoreAppVersion(storeSpecificId, {
 
 ### Contributors
 
-Atul R : https://github.com/master-atul
-
-Dmytro Gorelik : https://github.com/dhorelik
-
+- [Atul R](https://github.com/master-atul)
+- [Dmytro Gorelik](https://github.com/dhorelik)
+- [Oleg Filimonov](https://github.com/olegfilimonov)
 
 ### License
 MIT
