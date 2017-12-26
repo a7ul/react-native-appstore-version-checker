@@ -26,7 +26,7 @@ Nothing to be done here ( its pure JS for IOS ;) )
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
 
-  - Add `import com.reactlibrary.RNAppstoreVersionCheckerPackage;` to the imports at the top of the file
+  - Add `import com.masteratul.RNAppstoreVersionCheckerPackage;` to the imports at the top of the file
   - Add `new RNAppstoreVersionCheckerPackage()` to the list returned by the `getPackages()` method
 
 2. Append the following lines to `android/settings.gradle`:
