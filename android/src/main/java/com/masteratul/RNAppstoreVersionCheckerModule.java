@@ -28,8 +28,13 @@ public class RNAppstoreVersionCheckerModule extends ReactContextBaseJavaModule {
             Callback errorCallback) {
         try {
             Document doc = Jsoup.connect(url).get();
-            Elements versionElement = doc.select(extractor);
-            String versionText = versionElement.text();
+            String versionText;
+            if(extractor.equalsIgnoreCase("")){
+                versionText = doc.getElementsContainingOwnText("Current Version").parents().first().getAllElements().last().text();
+            }else{
+              versionText = doc.select(extractor).text();
+            }
+            // https://stackoverflow.com/a/49924787/2881112
             successCallback.invoke(versionText);
         } catch (Exception e) {
             errorCallback.invoke(e.getMessage());
