@@ -16,6 +16,11 @@ public class RNAppstoreVersionCheckerPackage implements ReactPackage {
       return Arrays.<NativeModule>asList(new RNAppstoreVersionCheckerModule(reactContext));
     }
 
+    //leaving it to support react-native v0.47 and less
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+      return Collections.emptyList();
+    }
+
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
       return Collections.emptyList();
