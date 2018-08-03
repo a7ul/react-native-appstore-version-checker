@@ -149,6 +149,7 @@ getAppstoreAppVersion(storeSpecificId, {
 - [Dmytro Gorelik](https://github.com/dhorelik)
 - [Oleg Filimonov](https://github.com/olegfilimonov)
 - [Carlos](https://github.com/carl0395)
+- [EricH](https://github.com/jehartzog)
 
 ### License
 MIT
