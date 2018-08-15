@@ -24,7 +24,7 @@
     "react-native": "*"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash.result": "^4.5.2"
   },
   "bugs": {
     "url": "https://github.com/master-atul/react-native-appstore-version-checker/issues"
