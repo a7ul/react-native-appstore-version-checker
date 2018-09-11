@@ -1,6 +1,6 @@
 {
   "name": "react-native-appstore-version-checker",
-  "version": "2.5.1",
+  "version": "2.5.4",
   "description": "A react native module to find the app version on play store and ios app store",
   "main": "index.js",
   "scripts": {

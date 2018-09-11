@@ -2,8 +2,6 @@
 
 [![https://nodei.co/npm/react-native-appstore-version-checker.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/react-native-appstore-version-checker.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/react-native-appstore-version-checker)
 
-
-
 A react native module to check an app's version on playstore or ios app store.
 This module can be used to check if your app has a new version on playstore or apple app store.
 or you can even check what is the latest version of another app on playstore.
@@ -30,48 +28,49 @@ Nothing to be done here ( its pure JS for IOS ;) )
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
 
-  - Add `import com.masteratul.RNAppstoreVersionCheckerPackage;` to the imports at the top of the file
-  - Add `new RNAppstoreVersionCheckerPackage()` to the list returned by the `getPackages()` method
+- Add `import com.masteratul.RNAppstoreVersionCheckerPackage;` to the imports at the top of the file
+- Add `new RNAppstoreVersionCheckerPackage()` to the list returned by the `getPackages()` method
 
 2. Append the following lines to `android/settings.gradle`:
 
-  ```
-     include ':react-native-appstore-version-checker'
-     project(':react-native-appstore-version-checker').projectDir = new File(rootProject.projectDir,     '../node_modules/react-native-appstore-version-checker/android')
-  ```
+```
+   include ':react-native-appstore-version-checker'
+   project(':react-native-appstore-version-checker').projectDir = new File(rootProject.projectDir,     '../node_modules/react-native-appstore-version-checker/android')
+```
 
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
 
-  ```
-     compile project(':react-native-appstore-version-checker')
-  ```
+```
+   compile project(':react-native-appstore-version-checker')
+```
 
 ## Usage
 
 ```javascript
-import {getAppstoreAppVersion} from 'react-native-appstore-version-checker';
+import { getAppstoreAppVersion } from "react-native-appstore-version-checker";
 
-or
+or;
 
-var getAppstoreAppVersion = require('react-native-appstore-version-checker').getAppstoreAppVersion;
+var getAppstoreAppVersion = require("react-native-appstore-version-checker")
+  .getAppstoreAppVersion;
 
 //On Android u can do
-getAppstoreAppVersion('com.supercell.clashofclans') //put any apps packageId here
-.then((appVersion) => {
-  console.log('clashofclans android app version on playstore', appVersion);
-})
-.catch((err) => {
-  console.log('error occurred', err);
-});
+getAppstoreAppVersion("com.supercell.clashofclans") //put any apps packageId here
+  .then(appVersion => {
+    console.log("clashofclans android app version on playstore", appVersion);
+  })
+  .catch(err => {
+    console.log("error occurred", err);
+  });
 
 //On IOS u can do
-getAppstoreAppVersion('529479190') //put any apps id here
-.then((appVersion) => {
-  console.log('clash of clans ios app version on appstore', appVersion);
-})
-.catch((err) => {
-  console.log('error occurred', err);
-});
+getAppstoreAppVersion("529479190") //put any apps id here
+  .then(appVersion => {
+    console.log("clash of clans ios app version on appstore", appVersion);
+  })
+  .catch(err => {
+    console.log("error occurred", err);
+  });
 ```
 
 ### How To find an appid in IOS or packageId in Android
@@ -108,7 +107,6 @@ The area marked on red is the app's `packageId`
 
 ### Advanced Options
 
-
 ```javascript
 getAppstoreAppVersion(identifier, options);
 ```
@@ -119,28 +117,28 @@ getAppstoreAppVersion(identifier, options);
 
 - `options` contains values which can affect the result obtained from the store
 
-    - `jquerySelector` [Android] is the dom element identifier (much like jquery selector) for playstore app page. Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
+      - `jquerySelector` [Android] is the dom element identifier (much like jquery selector) for playstore app page. Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
 
-    - `typeOfId` [iOS] (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
-Currently to get the ios version number from app store we hit the url `https://itunes.apple.com/lookup?id=<app id> ` by default.
-or we can also hit
-`https://itunes.apple.com/lookup?bundleId=<app bundle id>` if we pass typeOfId as `bundleId`.
-When we hit the above said urls we get json with all the info of the app.
+      - `typeOfId` [iOS] (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
 
-    - `country` [iOS] (default is `us`) The two-letter country code for the store you want to search. The search uses the default store front for the specified country.
+  Currently to get the ios version number from app store we hit the url `https://itunes.apple.com/lookup?id=<app id>` by default.
+  or we can also hit
+  `https://itunes.apple.com/lookup?bundleId=<app bundle id>` if we pass typeOfId as `bundleId`.
+  When we hit the above said urls we get json with all the info of the app.
+
+      - `country` [iOS] (default is `us`) The two-letter country code for the store you want to search. The search uses the default store front for the specified country.
 
 **Example**
 
 ```javascript
-const storeSpecificId = Platform.OS === 'ios'
-    ? '529479190'
-    : 'com.supercell.clashofclans'
+const storeSpecificId =
+  Platform.OS === "ios" ? "529479190" : "com.supercell.clashofclans";
 
 getAppstoreAppVersion(storeSpecificId, {
-    jquerySelector: '[itemprop=\'softwareVersion\']',
-    typeOfId: 'id',
-    country: 'de'
-})
+  jquerySelector: "[itemprop='softwareVersion']",
+  typeOfId: "id",
+  country: "de"
+});
 ```
 
 ### Contributors
@@ -150,8 +148,10 @@ getAppstoreAppVersion(storeSpecificId, {
 - [Oleg Filimonov](https://github.com/olegfilimonov)
 - [Carlos](https://github.com/carl0395)
 - [EricH](https://github.com/jehartzog)
+- [Regan Langford](https://github.com/ReganL)
 
 ### License
+
 MIT
 
 © Atul R
