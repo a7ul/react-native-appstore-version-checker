@@ -149,6 +149,7 @@ getAppstoreAppVersion(storeSpecificId, {
 - [Carlos](https://github.com/carl0395)
 - [EricH](https://github.com/jehartzog)
 - [Regan Langford](https://github.com/ReganL)
+- [Yuttana K](https://github.com/Thunderbird7)
 
 ### License
 
