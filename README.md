@@ -141,6 +141,8 @@ getAppstoreAppVersion(storeSpecificId, {
 });
 ```
 
+Quick note: it will get the public version from stores, that is, will not get alfa, beta or internal versions.
+
 ### Contributors
 
 - [Atul R](https://github.com/master-atul)
