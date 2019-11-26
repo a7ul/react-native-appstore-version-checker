@@ -57,7 +57,12 @@ var getAppstoreAppMetadata = require("react-native-appstore-version-checker")
 //On Android u can do
 getAppstoreAppMetadata("com.supercell.clashofclans") //put any apps packageId here
   .then(metadata => {
-    console.log("clashofclans android app version on playstore", metadata.version, "published on", metadata.currentVersionReleaseDate);
+    console.log(
+      "clashofclans android app version on playstore",
+      metadata.version,
+      "published on",
+      metadata.currentVersionReleaseDate
+    );
   })
   .catch(err => {
     console.log("error occurred", err);
@@ -66,7 +71,12 @@ getAppstoreAppMetadata("com.supercell.clashofclans") //put any apps packageId he
 //On IOS u can do
 getAppstoreAppMetadata("529479190") //put any apps id here
   .then(appVersion => {
-    console.log("clashofclans android app version on appstore", metadata.version, "published on", metadata.currentVersionReleaseDate);
+    console.log(
+      "clashofclans android app version on appstore",
+      metadata.version,
+      "published on",
+      metadata.currentVersionReleaseDate
+    );
   })
   .catch(err => {
     console.log("error occurred", err);
@@ -134,7 +144,7 @@ const storeSpecificId =
 
 getAppstoreAppMetadata(storeSpecificId, {
   jquerySelectors: {
-    version: "[itemprop='softwareVersion']",
+    version: "[itemprop='softwareVersion']"
   },
   typeOfId: "id",
   country: "de"
@@ -174,6 +184,7 @@ Quick note: it will get the public version from stores, that is, will not get al
 - [Yuttana K](https://github.com/Thunderbird7)
 - [Luís](https://github.com/luissmg)
 - [Grover TB](https://github.com/grovertb)
+- [David Saltares](https://github.com/dsaltares)
 
 ### License
 
