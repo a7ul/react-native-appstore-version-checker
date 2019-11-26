@@ -47,26 +47,26 @@ Nothing to be done here ( its pure JS for IOS ;) )
 ## Usage
 
 ```javascript
-import { getAppstoreAppVersion } from "react-native-appstore-version-checker";
+import { getAppstoreAppMetadata } from "react-native-appstore-version-checker";
 
 or;
 
-var getAppstoreAppVersion = require("react-native-appstore-version-checker")
-  .getAppstoreAppVersion;
+var getAppstoreAppMetadata = require("react-native-appstore-version-checker")
+  .getAppstoreAppMetadata;
 
 //On Android u can do
-getAppstoreAppVersion("com.supercell.clashofclans") //put any apps packageId here
-  .then(appVersion => {
-    console.log("clashofclans android app version on playstore", appVersion);
+getAppstoreAppMetadata("com.supercell.clashofclans") //put any apps packageId here
+  .then(metadata => {
+    console.log("clashofclans android app version on playstore", metadata.version, "published on", metadata.currentVersionReleaseDate);
   })
   .catch(err => {
     console.log("error occurred", err);
   });
 
 //On IOS u can do
-getAppstoreAppVersion("529479190") //put any apps id here
+getAppstoreAppMetadata("529479190") //put any apps id here
   .then(appVersion => {
-    console.log("clash of clans ios app version on appstore", appVersion);
+    console.log("clashofclans android app version on appstore", metadata.version, "published on", metadata.currentVersionReleaseDate);
   })
   .catch(err => {
     console.log("error occurred", err);
@@ -108,7 +108,7 @@ The area marked on red is the app's `packageId`
 ### Advanced Options
 
 ```javascript
-getAppstoreAppVersion(identifier, options);
+getAppstoreAppMetadata(identifier, options);
 ```
 
 **params:**
@@ -117,7 +117,7 @@ getAppstoreAppVersion(identifier, options);
 
 - `options` contains values which can affect the result obtained from the store
 
-      - `jquerySelector` [Android] is the dom element identifier (much like jquery selector) for playstore app page. Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
+      - `jquerySelectors` [Android] object with metadata property names to dom dom element identifiers (much like jquery selector) for playstore app page. Currently to get the appversion from the page we do load `https://play.google.com/store/apps/details?id=<app package id>` and parse `$('body > [itemprop="softwareVersion"]')` but you can optionally pass in a custom selector if you want. This is useful if dom structure of the app store page changes in the future.
 
       - `typeOfId` [iOS] (default is `id`) It can be either `id` or `bundleId`. If the `typeOfId` is `id` you need to pass `identifier` as appid and if `typeOfId` is `bundleId` you need to pass bundleIdentifier to `identifier`. It is basically, the query parameter for `https://itunes.apple.com/lookup?${typeOfId}=${identifier}`.
 
@@ -127,6 +127,26 @@ getAppstoreAppVersion(identifier, options);
   When we hit the above said urls we get json with all the info of the app.
 
       - `country` [iOS] (default is `us`) The two-letter country code for the store you want to search. The search uses the default store front for the specified country.
+
+```javascript
+const storeSpecificId =
+  Platform.OS === "ios" ? "529479190" : "com.supercell.clashofclans";
+
+getAppstoreAppMetadata(storeSpecificId, {
+  jquerySelectors: {
+    version: "[itemprop='softwareVersion']",
+  },
+  typeOfId: "id",
+  country: "de"
+});
+```
+
+```javascript
+getAppstoreAppVersion(identifier, options);
+```
+
+`getAppstoreAppVersion` has been maintained with previous versions for backwards compatibility. The only difference is that instead
+of `jquerySelectors`, the `options` objet only takes one selector for the app version and it's called `jquerySelector`.
 
 **Example**
 
